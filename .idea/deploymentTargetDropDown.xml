@@ -2,7 +2,63 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="ControlsUi">
+        <State />
+      </entry>
+      <entry key="Header">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\qwemn\.android\avd\samsung24_API_34.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-03-20T06:06:12.928638800Z" />
+        </State>
+      </entry>
+      <entry key="Screen">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="BOOT_WITH_SNAPSHOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\qwemn\.android\avd\samsung24_API_34.avd" />
+                </Key>
+              </deviceKey>
+              <snapshotKey value="C:\Users\qwemn\.android\avd\samsung24_API_34.avd\snapshots\snap_2024-03-22_19-52-59" />
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-04-06T15:25:53.084758100Z" />
+        </State>
+      </entry>
+      <entry key="Unnamed">
+        <State />
+      </entry>
       <entry key="app">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="BOOT_WITH_SNAPSHOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\qwemn\.android\avd\samsung24_API_34.avd" />
+                </Key>
+              </deviceKey>
+              <snapshotKey value="C:\Users\qwemn\.android\avd\samsung24_API_34.avd\snapshots\snap_2024-04-07_19-17-32" />
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-04-07T16:08:27.580053Z" />
+        </State>
+      </entry>
+      <entry key="lol">
         <State />
       </entry>
     </value>
