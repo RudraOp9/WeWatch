@@ -14,8 +14,11 @@ fun timeFormat(timeInSeconds:Int):String{
         return "$hours : $minutes : $seconds"
     }else if (minutes >= 1){
         seconds = timeInSeconds % 60
+        if (seconds<10)  return "$minutes : 0$seconds"
         return "$minutes : $seconds"
+
     }
+    if (seconds<10)  return "0 : 0$seconds"
     return "0 : $seconds"
 
 }

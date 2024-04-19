@@ -1,17 +1,21 @@
 package com.leo.wewatch
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.WindowInsets
+import android.view.WindowInsetsController
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.media3.common.util.UnstableApi
 import com.leo.wewatch.app.component.player.logic.Player
@@ -27,7 +31,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val player by viewModels<Player>()
+       /* val player by viewModels<Player>()*/
         Log.d("TAG", "onCreate: in oncreate")
 
         /*val downloadContentDirectory =
@@ -40,7 +44,19 @@ class MainActivity : ComponentActivity() {
         val mediaItem = MediaItem.fromUri("https://sample-videos.com/video321/mp4/240/big_buck_bunny_240p_1mb.mp4")
         val mediaSource3 = DefaultMediaSourceFactory(no.getChacheDataSourceFactory()).createMediaSource(mediaItem)
         no.setMediaSource(mediaSource3)*/
+
+      /*  WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        } else {
+            window.insetsController?.apply {
+                hide(WindowInsets.Type.statusBars())
+                systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            }
+        }*/
         setContent {
+
 
 
             WeWatchTheme {
@@ -55,7 +71,7 @@ class MainActivity : ComponentActivity() {
 
                    // ShowHomeScreen()
                    // VideoPlayBackScreen(applicationContext = applicationContext/*,downloadCache*/,no)
-                    Navigation(applicationContext,playerd)
+                    Navigation(applicationContext,playerd,window)
                     
                 }
             }

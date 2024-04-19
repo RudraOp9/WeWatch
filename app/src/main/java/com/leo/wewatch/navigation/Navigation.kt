@@ -1,9 +1,9 @@
 package com.leo.wewatch.navigation
 
 import android.content.Context
+import android.view.Window
 import androidx.annotation.OptIn
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.media3.common.util.UnstableApi
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,7 +17,7 @@ import com.leo.wewatch.app.screens.homescreen.ui.ShowHomeScreen
 
 @OptIn(UnstableApi::class)
 @Composable
-fun Navigation(context: Context, player: Player){
+fun Navigation(context: Context, player: Player, window: Window){
     val navCtrl = rememberNavController()
     NavHost(navController = navCtrl, startDestination = Screens.HomeFeed.route){
 
@@ -26,7 +26,7 @@ fun Navigation(context: Context, player: Player){
         }
         composable(route = Screens.VideoPlayer.route){
 
-          /*  VideoPlayBackScreen(applicationContext = context, player = player)*/
+            VideoPlayBackScreen(context = context, player = player , window)
         }
 
     }

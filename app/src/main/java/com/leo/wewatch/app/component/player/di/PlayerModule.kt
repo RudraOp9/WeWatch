@@ -35,16 +35,16 @@ object playerModule {
             ).build()
     }
 
- /*   @Provides
+    @Provides
     @Singleton
     fun simpleCache(@ApplicationContext context: Context):SimpleCache{
         return SimpleCache(
             File(context.cacheDir.path,"cache2fjgfdgsddashfhfggj"), NoOpCacheEvictor(), StandaloneDatabaseProvider(
             context)
         )
-    }*/
+    }
 
-/*    @Provides
+    @Provides
     @Singleton
     fun cacheFactory(@ApplicationContext context: Context):CacheDataSource.Factory{
         val simpleCache = simpleCache(context)
@@ -56,7 +56,7 @@ object playerModule {
                 .setCacheReadDataSourceFactory(FileDataSource.Factory())
                 .setUpstreamDataSourceFactory(DefaultDataSource.Factory(context, DefaultHttpDataSource.Factory()))
                 .setFlags(CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR)
-    }*/
+    }
 
    /* @Provides
     @Singleton
