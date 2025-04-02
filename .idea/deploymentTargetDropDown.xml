@@ -2,39 +2,11 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="Anothertest">
-        <State />
-      </entry>
-      <entry key="ChannelTabs">
-        <State />
-      </entry>
-      <entry key="Parent2">
-        <State />
-      </entry>
-      <entry key="Profile">
-        <State />
-      </entry>
-      <entry key="ShowChannelPage">
-        <State />
-      </entry>
-      <entry key="Unnamed">
-        <State />
-      </entry>
       <entry key="app">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\qwemn\.android\avd\rudra2.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-05-01T16:18:30.829255300Z" />
-        </State>
+        <State />
+      </entry>
+      <entry key="preview">
+        <State />
       </entry>
     </value>
   </component>
