@@ -167,7 +167,7 @@ fun FilterChip(isSelected: MutableState<Boolean>, onFilterClicked: () -> Unit, c
             borderWidth = 0.dp,
             borderColor = Color.LightGray,
             enabled = true,
-            selected = false,
+            selected = isSelected.value,
             selectedBorderColor = Color.Black
         ),
         modifier = Modifier.padding(vertical = 10.dp, horizontal = 10.dp)

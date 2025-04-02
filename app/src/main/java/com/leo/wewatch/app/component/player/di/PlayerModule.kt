@@ -29,6 +29,7 @@ object playerModule {
     @Provides
     @Singleton
     fun playerBuilder(@ApplicationContext context: Context) : ExoPlayer {
+
         return ExoPlayer.Builder(context)
             .setTrackSelector(
                 DefaultTrackSelector(context)

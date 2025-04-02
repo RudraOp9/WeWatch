@@ -1,34 +1,32 @@
 package com.leo.wewatch.app.component.player.logic
 
 import android.content.Context
-import android.media.MediaCodec
-import android.media.effect.EffectFactory
 import android.util.Log
 import android.view.Surface
 import android.view.SurfaceView
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.graphics.BlurEffect
-import androidx.compose.ui.graphics.RenderEffect
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.media3.common.C
-import androidx.media3.common.C.VideoScalingMode
-import androidx.media3.common.Effect
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.datasource.cache.CacheDataSource
-import androidx.media3.exoplayer.DefaultRenderersFactory
+import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.SeekParameters
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.exoplayer.source.MediaSource
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
+import androidx.media3.exoplayer.upstream.DefaultAllocator
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import org.jetbrains.annotations.ApiStatus.Experimental
 import javax.inject.Inject
 
@@ -40,33 +38,58 @@ import javax.inject.Inject
 
 @UnstableApi
 @HiltViewModel
-class Player @Inject constructor(
+class VideoPlayBackViewModel @Inject constructor(
 
     private val cacheDataSourceFactory: CacheDataSource.Factory,
     var player: ExoPlayer
 ) : ViewModel() {
 
 
+    var screenHeight : Int = 0
+    var playerHeight : Int =  0
+
 
     //var player : ExoPlayer? = null
     // lateinit var player: ExoPlayer
 
-    fun playSpeed(speed:Float){
+    fun playSpeed(speed: Float) {
+        viewModelScope.launch {
+
+        }
+        //player.mediaItemCount
+        // player.currentMediaItemIndex
         player.setPlaybackSpeed(speed)
+
+
     }
 
+    private val MIN_BUFFER_DURATION = 2000
+
+    //Max Video you want to buffer during PlayBack
+    private val MAX_BUFFER_DURATION = 15000
+
+    //Min Video you want to buffer before start Playing it
+    private val MIN_PLAYBACK_START_BUFFER = 1500
+
+    //Min video You want to buffer when user resumes video
+    private val MIN_PLAYBACK_RESUME_BUFFER = 2000
 
     fun setUpExoPlayer(context: Context) {
+
         player = ExoPlayer.Builder(context).setTrackSelector(
             DefaultTrackSelector(context)
-        ).build()
-
-
-       // player.videoSize.height
-
+        ).setLoadControl(
+            DefaultLoadControl.Builder().setAllocator(DefaultAllocator(true, 16))
+                .setBufferDurationsMs(
+                    MIN_BUFFER_DURATION,
+                    MAX_BUFFER_DURATION,
+                    MIN_PLAYBACK_START_BUFFER,
+                    MIN_PLAYBACK_RESUME_BUFFER
+                ).setTargetBufferBytes(-1).setPrioritizeTimeOverSizeThresholds(true).build()
+        ).setSeekParameters(SeekParameters(SeekParameters.CLOSEST_SYNC.toleranceBeforeUs,SeekParameters.CLOSEST_SYNC.toleranceAfterUs)).build()
 
         player.videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT
-        var effect : BlurEffect = BlurEffect(0.5f,0.5f)
+
 
     }
 
@@ -78,6 +101,7 @@ class Player @Inject constructor(
      * Returns the current position of video playback in milliseconds (Long)
      * */
     fun currentPosition(): Long {
+
         return player.currentPosition
     }
 
@@ -86,6 +110,8 @@ class Player @Inject constructor(
     }
 
     fun getDuration(): Long {
+        // player.mediaItem
+
         return player.duration
     }
 
@@ -106,7 +132,6 @@ class Player @Inject constructor(
         player.setMediaSource(mediaSource3)
 
 
-
     }
 
 
@@ -121,7 +146,7 @@ class Player @Inject constructor(
             when (event) {
                 Lifecycle.Event.ON_PAUSE -> {
                     Log.d("TAG", "StartPlay: in onPause")
-                   // player.pause()
+                    // player.pause()
                 }
 
                 Lifecycle.Event.ON_STOP -> {
@@ -139,7 +164,7 @@ class Player @Inject constructor(
 
                 Lifecycle.Event.ON_RESUME -> {
                     Log.d("TAG", "StartPlay: in OnResume")
-                    if (player.playWhenReady){
+                    if (player.playWhenReady) {
                         player.play()
                     }
                 }
@@ -244,7 +269,9 @@ class Player @Inject constructor(
 
     fun release() {
         player.release()
+
         listener?.let { player.removeListener(it) }
+        onCleared()
     }
 
 

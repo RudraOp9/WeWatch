@@ -335,10 +335,13 @@ fun ScrollWithControl(
 
             }
 
+            var x = 2.475f
+         //   x.toInt()
+
+
 
 
             Slider(
-
                 value = input / videoDuration,
                 onValueChange = onValueChange,
                 enabled = true,

@@ -95,7 +95,11 @@ fun ShowHomeScreen(navController: NavController) {
                     Log.d("tag", "feed cllicked")
                     navController.navigate(Screens.VideoPlayer.route)
                 },
-                { Log.d("tag", "channel icon clicked") },
+                { Log.d("tag", "channel icon clicked")
+
+                    navController.navigate("channel_page")
+
+                },
                 {
                     boo = true
                     Log.d("tag", "more menu clicked")

@@ -11,3 +11,6 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 val LightRed = Color(0xFF8F0D0D)
 val back = Color(0x9E424141)
+val colorShowUiBack = Color.Black.copy(alpha = 0.25f)
+val whiteBackground = Color.White
+val blackBackground = Color.Black

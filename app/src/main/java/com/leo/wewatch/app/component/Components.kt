@@ -1,14 +1,11 @@
 package com.leo.wewatch.app.component
 
 import android.net.Uri
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -17,11 +14,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,63 +26,177 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
 import coil.compose.AsyncImage
+import coil.compose.AsyncImagePainter
 import com.leo.wewatch.R
 
 
 @Composable
 fun ThumbnailView(
     videoLength: String,
-  //  lengthSize: Float = 13f,
+    //  lengthSize: Float = 13f,
     // painter: Painter,
-    uri: Uri ,
+    uri: Uri,
     contentDescription: String = "video",
     progress: Float,
+    showLinearProgress: Boolean = true,
     modifier: Modifier,
+    fontSize: Float = 13f
+
+    ) {
+    Row(modifier = modifier) {
+
+
+        Box() {
+
+
+            AsyncImage(
+                model = uri,
+                contentDescription = contentDescription,
+                contentScale = ContentScale.Fit,
+                // painter = painter,
+                // contentDescription = contentDescription,
+                modifier = Modifier.aspectRatio(16f / 9f),
+
+            )
+
+            Text(
+                text = videoLength,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.White,
+                fontSize = TextUnit(fontSize, TextUnitType.Sp),
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(bottom = 10.dp, end = 5.dp)
+                    .background(
+                        Color(red = 0f, green = 0f, blue = 0f, alpha = 0.5f),
+                        shape = RoundedCornerShape(10f)
+                    )
+                    .padding(4.dp)
+            )
+            if (showLinearProgress) {
+
+
+                LinearProgressIndicator(
+                    progress = progress,
+                    color = Color.Red,
+                    trackColor = Color(red = 1f, green = 1f, blue = 1f, alpha = 0.5f),
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun ThumbnailView2(
+    videoLength: String,
+    //  lengthSize: Float = 13f,
+    // painter: Painter,
+    uri: Uri,
+    contentDescription: String = "video",
+    progress: Float,
+    showLinearProgress: Boolean = true,
+    modifier: Modifier,
+    fontSize: Float = 13f
 
 ) {
-    Box {
+    Row(modifier = modifier) {
 
-        AsyncImage(
-            model = uri,
-            contentDescription = contentDescription,
-            contentScale = ContentScale.FillWidth,
-            // painter = painter,
-            // contentDescription = contentDescription,
-            modifier = modifier.aspectRatio(16f / 9f),
-        )
 
-        Text(
-            text = videoLength,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.White,
-            fontSize = TextUnit(13f, TextUnitType.Sp),
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(bottom = 10.dp, end = 5.dp)
-                .background(
-                    Color(red = 0f, green = 0f, blue = 0f, alpha = 0.5f),
-                    shape = RoundedCornerShape(10f)
+        Box() {
+
+            AsyncImage(
+                model = uri,
+                contentDescription = contentDescription,
+                contentScale = ContentScale.Fit,
+                // painter = painter,
+                // contentDescription = contentDescription,
+                modifier = Modifier.clip(shape = RoundedCornerShape(8.dp)).aspectRatio(16f / 9f),
+            )
+
+            Text(
+                text = videoLength,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.White,
+                fontSize = TextUnit(fontSize, TextUnitType.Sp),
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding( end = 5.dp)
+                    .background(
+                        Color(red = 0f, green = 0f, blue = 0f, alpha = 0.6f),
+                        shape = RoundedCornerShape(10f)
+                    )
+                    .padding(2.dp)
+            )
+            if (showLinearProgress) {
+
+
+                LinearProgressIndicator(
+                    progress = progress,
+                    color = Color.Red,
+                    trackColor = Color(red = 1f, green = 1f, blue = 1f, alpha = 0.5f),
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
                 )
-                .padding(4.dp)
+            }
+        }
+    }
+}
+
+@Composable
+fun VideoDetail2(
+    title: String,
+    views: String,
+    timePublished: String,
+    modifier: Modifier,
+    onMoreMenuClick: () -> Unit
+) {
+
+    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+
+        val modifier1: Modifier = Modifier
+        Column(modifier = Modifier.weight(1f).padding(start = 5.dp)) {
+            Text(text = title, fontWeight = FontWeight.Normal, fontSize = 13.sp, lineHeight = 15.sp)
+            makeSpace(top = 1.dp)
+            Row {
+                Text(text = "$views views  · $timePublished", fontSize = 11.sp)
+            }
+
+        }
+
+
+        Image(
+            painter = painterResource(id = R.drawable.icon_more_vert_24),
+            contentDescription = null,
+            alignment = Alignment.TopEnd,
+            modifier = modifier1
+                .padding(top = 12.dp)
+                .clickable(enabled = true, onClick = onMoreMenuClick)
         )
-        LinearProgressIndicator(
-            progress = progress,
-            color = Color.Red,
-            trackColor = Color(red = 1f, green = 1f, blue = 1f, alpha = 0.5f),
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-        )
+
+        /* DropdownMenu(
+             expanded = false,
+             onDismissRequest = {  },
+             modifier = modifier
+                 .clickable(enabled = true, onClick = onClick)
+                 .weight(0.05f).background(Color.White),
+             properties = PopupProperties(focusable = true)
+         ) {
+             Text(text = "joo")
+         }*/
+
     }
 
 }
-
 
 @Composable
 fun VideoDetail(
@@ -97,13 +206,14 @@ fun VideoDetail(
     views: String,
     timePublished: String,
     modifier: Modifier,
-    onChannelClick : () -> Unit,
-    onMoreMenuClick : () -> Unit
+    onChannelClick: () -> Unit,
+    onMoreMenuClick: () -> Unit
+
 
 ) {
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
 
-        val modifier1 : Modifier = Modifier
+        val modifier1: Modifier = Modifier
 
         Image(
             painter = channelLogo,
@@ -119,8 +229,8 @@ fun VideoDetail(
 
         makeSpace(start = 10.dp)
 
-        Column(modifier= Modifier.weight(0.9f)){
-            Text(text = title, fontWeight = FontWeight.SemiBold,     modifier = modifier)
+        Column(modifier = Modifier.weight(0.9f)) {
+            Text(text = title, fontWeight = FontWeight.SemiBold, modifier = modifier)
             makeSpace(top = 5.dp)
             Row {
                 Text(text = "$channelName  · $views views  · $timePublished", fontSize = 15.sp)
@@ -133,24 +243,25 @@ fun VideoDetail(
             painter = painterResource(id = R.drawable.icon_more_vert_24),
             contentDescription = null,
             alignment = Alignment.TopEnd,
-            modifier = modifier1.padding(top = 12.dp).clickable(enabled = true, onClick = onMoreMenuClick)
+            modifier = modifier1
+                .padding(top = 12.dp)
+                .clickable(enabled = true, onClick = onMoreMenuClick)
         )
 
-       /* DropdownMenu(
-            expanded = false,
-            onDismissRequest = {  },
-            modifier = modifier
-                .clickable(enabled = true, onClick = onClick)
-                .weight(0.05f).background(Color.White),
-            properties = PopupProperties(focusable = true)
-        ) {
-            Text(text = "joo")
-        }*/
+        /* DropdownMenu(
+             expanded = false,
+             onDismissRequest = {  },
+             modifier = modifier
+                 .clickable(enabled = true, onClick = onClick)
+                 .weight(0.05f).background(Color.White),
+             properties = PopupProperties(focusable = true)
+         ) {
+             Text(text = "joo")
+         }*/
 
     }
 
 }
-
 
 
 @Composable

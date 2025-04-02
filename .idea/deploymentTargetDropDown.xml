@@ -5,10 +5,16 @@
       <entry key="Anothertest">
         <State />
       </entry>
-      <entry key="Parent">
+      <entry key="ChannelTabs">
         <State />
       </entry>
       <entry key="Parent2">
+        <State />
+      </entry>
+      <entry key="Profile">
+        <State />
+      </entry>
+      <entry key="ShowChannelPage">
         <State />
       </entry>
       <entry key="Unnamed">
@@ -22,19 +28,13 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\qwemn\.android\avd\samsung24_API_34.avd" />
+                  <value value="C:\Users\qwemn\.android\avd\rudra2.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-14T15:23:42.916681200Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-05-01T16:18:30.829255300Z" />
         </State>
-      </entry>
-      <entry key="lol">
-        <State />
-      </entry>
-      <entry key="pr">
-        <State />
       </entry>
     </value>
   </component>
